@@ -4,12 +4,12 @@
 
 Summary:	Image display, conversion, and manipulation system
 Name:		GraphicsMagick
-Version:	1.3.19
-Release:	2
+Version:	1.3.20
+Release:	1
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.graphicsmagick.org/pub/GraphicsMagick/1.3/%{name}-%{version}.tar.xz
-# Source0-md5:	e2795d7bdc2f3917804e40c8cae1993e
+# Source0-md5:	5bb456e3466026ada6f12cc53c9776dc
 Patch0:		%{name}-link.patch
 URL:		http://www.graphicsmagick.org/
 BuildRequires:	autoconf
@@ -138,6 +138,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgdocdir=%{_docdir}/%{name}-devel-%{version}
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -353,8 +355,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_includedir}/GraphicsMagick/magick
 %{_includedir}/GraphicsMagick/wand
-%{_libdir}/libGraphicsMagick.la
-%{_libdir}/libGraphicsMagickWand.la
 %{_pkgconfigdir}/GraphicsMagick.pc
 %{_pkgconfigdir}/GraphicsMagickWand.pc
 
@@ -402,7 +402,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/GraphicsMagick++-config
 %attr(755,root,root) %{_libdir}/libGraphicsMagick++.so
-%{_libdir}/libGraphicsMagick++.la
 %{_includedir}/GraphicsMagick/Magick++
 %{_includedir}/GraphicsMagick/Magick++.h
 %{_pkgconfigdir}/GraphicsMagick++.pc
