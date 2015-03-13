@@ -4,12 +4,12 @@
 
 Summary:	Image display, conversion, and manipulation system
 Name:		GraphicsMagick
-Version:	1.3.20
+Version:	1.3.21
 Release:	1
 License:	MIT
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.graphicsmagick.org/pub/GraphicsMagick/1.3/%{name}-%{version}.tar.xz
-# Source0-md5:	5bb456e3466026ada6f12cc53c9776dc
+# Source0-md5:	f86fe89ea413720a3b04c59c8d5271a2
 Patch0:		%{name}-link.patch
 URL:		http://www.graphicsmagick.org/
 BuildRequires:	autoconf
@@ -18,6 +18,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	freetype-devel
 BuildRequires:	jasper-devel
+BuildRequires:	jbigkit-devel
 BuildRequires:	lcms2-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libltdl-devel
@@ -168,7 +169,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{modulesdir}/coders
 
 %attr(755,root,root) %{modulesdir}/coders/art.so
-%attr(755,root,root) %{modulesdir}/coders/avi.so
 %attr(755,root,root) %{modulesdir}/coders/avs.so
 %attr(755,root,root) %{modulesdir}/coders/bmp.so
 %attr(755,root,root) %{modulesdir}/coders/cals.so
@@ -250,7 +250,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modulesdir}/coders/xwd.so
 %attr(755,root,root) %{modulesdir}/coders/yuv.so
 %{modulesdir}/coders/art.la
-%{modulesdir}/coders/avi.la
 %{modulesdir}/coders/avs.la
 %{modulesdir}/coders/bmp.la
 %{modulesdir}/coders/cals.la
@@ -338,8 +337,8 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %doc ChangeLog Copyright.txt NEWS.txt README.txt TODO.txt
-%attr(755,root,root) %ghost %{_libdir}/libGraphicsMagick.so.?
-%attr(755,root,root) %ghost %{_libdir}/libGraphicsMagickWand.so.?
+%attr(755,root,root) %ghost %{_libdir}/libGraphicsMagick.so.3
+%attr(755,root,root) %ghost %{_libdir}/libGraphicsMagickWand.so.2
 %attr(755,root,root) %{_libdir}/libGraphicsMagick.so.*.*.*
 %attr(755,root,root) %{_libdir}/libGraphicsMagickWand.so.*.*.*
 
@@ -364,6 +363,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files coders
 %defattr(644,root,root,755)
+%attr(755,root,root) %{modulesdir}/coders/jbig.so
 %attr(755,root,root) %{modulesdir}/coders/jp2.so
 %attr(755,root,root) %{modulesdir}/coders/jpeg.so
 %attr(755,root,root) %{modulesdir}/coders/miff.so
@@ -378,6 +378,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modulesdir}/coders/url.so
 %attr(755,root,root) %{modulesdir}/coders/webp.so
 %attr(755,root,root) %{modulesdir}/coders/wmf.so
+%{modulesdir}/coders/jbig.la
 %{modulesdir}/coders/jp2.la
 %{modulesdir}/coders/jpeg.la
 %{modulesdir}/coders/miff.la
@@ -396,7 +397,7 @@ rm -rf $RPM_BUILD_ROOT
 %files c++
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libGraphicsMagick++.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libGraphicsMagick++.so.?
+%attr(755,root,root) %ghost %{_libdir}/libGraphicsMagick++.so.11
 
 %files c++-devel
 %defattr(644,root,root,755)
